@@ -18,8 +18,8 @@ export const PersonForm = ({ persons, setPersons, setMessage, setType }) => {
                     setMessage(null)
                 }, 3000)
             })
-            .catch(() => {
-                setMessage(`Information of ${person.name} has already been removed from server`)
+            .catch((error) => {
+                setMessage(`${error.response.data.error}`)
                 setType('error')
                 setTimeout(() => {
                     setMessage(null)
@@ -55,6 +55,13 @@ export const PersonForm = ({ persons, setPersons, setMessage, setType }) => {
                     }, 3000)
                     setNewName('')
                     setNewNumber('')
+                })
+                .catch(error => {
+                    setMessage(`${error.response.data.error}`)
+                    setType('error')
+                    setTimeout(() => {
+                        setMessage(null)
+                    }, 3000)
                 })
         }
     }
