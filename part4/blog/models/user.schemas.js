@@ -7,13 +7,13 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'username is required'],
         unique: [true, 'Username must be unique'],
-        minlength: [3, 'username must be at least 3 characters long']
+        minlength: [2, 'username must be at least 2 characters long']
 
     },
     name: {
         type: String,
         required: [true, 'name is required'],
-        minlength: [3, 'name must be at least 3 characters long']
+        minlength: [2, 'name must be at least 2 characters long']
     },
     passwordHash: {
         type: String,

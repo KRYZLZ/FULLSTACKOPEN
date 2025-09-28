@@ -113,4 +113,22 @@ blogRouter.put('/:id', userExtractor, async (request, response, next) => {
     } catch (error) { next(error) }
 })
 
+blogRouter.patch('/:id/like', async (request, response, next) => {
+    try {
+        const blog = await Blog.findById(request.params.id)
+
+        if (!blog) {
+            return response.status(404).json({ error: 'blog not found' })
+        }
+
+        blog.likes = blog.likes + 1
+        const updatedBlog = await blog.save()
+
+        response.json(updatedBlog)
+
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = blogRouter
